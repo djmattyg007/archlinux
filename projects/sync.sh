@@ -13,6 +13,7 @@ for project in $PROJECTS; do
 	cd $path_to_project
 
 	project_folder=`basename $project`
+	echo "Updating $project"
 	if [[ -d "$project_folder" ]]; then
 		cd $project_folder
 		/usr/bin/git pull origin master
