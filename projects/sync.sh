@@ -16,7 +16,9 @@ for project in $PROJECTS; do
 	echo "Updating $project"
 	if [[ -d "$project_folder" ]]; then
 		cd $project_folder
-		/usr/bin/git pull origin master
+		tracking_branch=$(/usr/bin/git rev-parse --abbrev-ref --symbolic-full-name @{u})
+		/usr/bin/git fetch origin
+		/usr/bin/git merge $tracking_branch
 	else
 		/usr/bin/git clone "$BASEURL/$project"".git"
 	fi
