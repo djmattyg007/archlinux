@@ -17,7 +17,7 @@ for project in $PROJECTS; do
 	if [[ -d "$project_folder" ]]; then
 		cd $project_folder
 		tracking_branch=$(/usr/bin/git rev-parse --abbrev-ref --symbolic-full-name @{u})
-		/usr/bin/git fetch origin
+		/usr/bin/git fetch -p origin
 		/usr/bin/git merge $tracking_branch
 	else
 		/usr/bin/git clone "$BASEURL/$project"".git"
