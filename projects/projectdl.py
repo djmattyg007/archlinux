@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 from bs4 import BeautifulSoup
 import requests
 import simplediff
@@ -35,7 +36,11 @@ if removed:
     print("Removed:")
     pprint(removed)
 
-if added or removed:
+dryrun = len(sys.argv) > 1 and sys.argv[1] == "--dry-run"
+
+if dryrun == True:
+    print("Performed a dry run.")
+elif added or removed:
     with open("projects.txt", mode = "w", encoding = "utf-8") as projects_file:
         for repo_name in new_repos:
             projects_file.write(repo_name)
